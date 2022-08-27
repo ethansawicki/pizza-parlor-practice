@@ -25,21 +25,12 @@ return highestOrderId + 1
 
 export const addNewOrder = (order) => {
 const newId = getNewOrderId()
+order.id = newId
 // Add logic to give the order the property id, which is equal to newId
     // Add logic to add the order object to the orders array
 
     // The below line creates and dispatches a new custom event titled "stateChanged".
     // We will still need to add a listener for this event.
-
-order = {}
-const toppingsArray = []
-// const toppings = toppingsElements.forEach(toppingElement=> {
-//     toppingsArray.push(toppingElement.value)
-//   });
-order.id = newId
-order.crust = 
-//newOrder.toppings = toppingsArray
-order.instructions = document.getElementById('specialInstructions')?.value
 orders.push(order)
 document.dispatchEvent(new CustomEvent("stateChanged"))
 }

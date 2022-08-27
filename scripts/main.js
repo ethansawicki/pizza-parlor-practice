@@ -1,7 +1,7 @@
 import {getOrders, addNewOrder} from './database.js'
 
 document.addEventListener("stateChanged", event => {
-    console.log(getOrders())
+    displayOrders()
   })
 
 document.getElementById("app").innerHTML = `
@@ -14,9 +14,9 @@ document.getElementById("app").innerHTML = `
       <label for="thinCrust">Thin</label>
       <input id="thinCrust" name="crust" type="radio" value="thin" />
       <label for="handTossedCrust">Hand Tossed</label>
-      <input id="handTossedCrust" name="crust" type="radio" value="HandTossed" />
+      <input id="handTossedCrust" name="crust" type="radio" value="handTossed" />
       <label for="handTossedCrust">Stuffed</label>
-      <input id="stuffed" name="crust" type="radio" value="stuffed" />
+      <input id="stuffedCrust" name="crust" type="radio" value="stuffed" />
       </div>
       <div class="toppings">
         <p>Pick your Toppings (Select all that apply)</p>
@@ -79,6 +79,18 @@ displayOrders()
 
 document.addEventListener('click', (event) => {
     if (event.target.id === "submitOrder") {
-        addNewOrder()
+      const toppingsArray = []
+      const crust = document.querySelector("input[name=crust]:checked")?.value
+      const toppingsElements = document.querySelectorAll("input[name=toppings]:checked")
+      const instructions = document.getElementById('specialInstructions')?.value
+      const toppings = toppingsElements.forEach(toppingsElement => {
+        toppingsArray.push(toppingsElement.value)
+      })
+      const orders = {
+        crust: crust,
+        toppings: toppingsArray,
+        instructions: instructions
+      }
+      addNewOrder(orders)
     }
 })
