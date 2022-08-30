@@ -62,7 +62,6 @@ const displayOrders = () => {
   const orders = getOrders()
   let completedOrders = ''
   const orderElement = document.querySelector('#orders')
-  // Add logic here to put the orders on the DOM
   for(const order of orders) {
     completedOrders += `<ul>`
     completedOrders += `<li>Order#: ${order.id}</li>`

@@ -26,6 +26,6 @@ return highestOrderId + 1
 export const addNewOrder = (order) => {
 const newId = getNewOrderId()
 order.id = newId
-orders.push(order)
+orders.unshift(order)
 document.dispatchEvent(new CustomEvent("stateChanged"))
 }
